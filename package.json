@@ -1,0 +1,44 @@
+{
+  "name": "dotchat",
+  "version": "1.0.0",
+  "private": true,
+  "description": "dotchat - Simple Electron chat over WebSocket (IP or LAN)",
+  "main": "main.js",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:appimage": "electron-builder --linux AppImage",
+    "postinstall": "node -e \"console.log('postinstall complete')\""
+  },
+  "build": {
+    "appId": "com.dotchat.app",
+    "productName": "dotchat",
+    "icon": "build/icon.png",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "node_modules/**/*"
+    ],
+    "linux": {
+      "target": "AppImage",
+      "category": "Network",
+      "icon": "build/icon.png"
+    }
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "tweetnacl": "^1.0.3",
+    "tweetnacl-util": "^0.15.1",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^25.1.4"
+  }
+}

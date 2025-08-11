@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' http: https: ws: wss:;" />
+  <title>dotchat</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="brand-icon">
+        <circle cx="12" cy="12" r="10" stroke="#79e08e" stroke-width="2"></circle>
+        <circle cx="12" cy="12" r="3" fill="#79e08e"></circle>
+      </svg>
+      <span>dotchat</span>
+    </div>
+    <div class="header-actions">
+      <label class="debug-toggle">
+        <input id="debug-toggle" type="checkbox" />
+        <span>Debug</span>
+      </label>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home-section" class="card">
+      <h1>Welcome</h1>
+      <p>Choose an option to begin:</p>
+      <div class="actions">
+        <button id="btn-serve" class="cta">
+          <span class="ico">🏠</span>
+          Servir
+        </button>
+        <button id="btn-join" class="cta secondary">
+          <span class="ico">➡️</span>
+          Entrar
+        </button>
+      </div>
+    </section>
+
+    <section id="serve-section" class="card hidden">
+      <h2>
+        <span class="ico">🚀</span>
+        Servir
+      </h2>
+      <div class="grid-2">
+        <div class="form-row">
+          <label for="serve-port">Port</label>
+          <input id="serve-port" type="number" min="1" max="65535" value="3000" />
+        </div>
+        <div class="form-row">
+          <label for="serve-name">Seu nome</label>
+          <input id="serve-name" type="text" placeholder="ex.: Alice" />
+        </div>
+      </div>
+      <div class="status" id="serve-status">Pressione "Iniciar Servidor" para começar.</div>
+      <div class="actions">
+        <button id="btn-start-serve" class="cta">
+          <span class="ico">▶️</span>
+          Iniciar Servidor
+        </button>
+        <button id="btn-stop-serve" class="cta danger" disabled>
+          <span class="ico">⏹</span>
+          Parar
+        </button>
+        <button id="btn-back-serve" class="text-btn">Voltar</button>
+      </div>
+
+      <div id="connection-bar-serve" class="connection-bar hidden" aria-live="polite">
+        <div class="conn-item">
+          <span class="label">Endpoints (compartilhe com o convidado)</span>
+          <div id="endpoints-list" class="endpoint-list"></div>
+        </div>
+        <div class="conn-actions">
+          <button id="btn-open-chat" class="cta small" title="Entrar no chat">➡️ Entrar no chat</button>
+          <button id="btn-close-server" class="cta danger small" title="Fechar servidor">🛑 Fechar servidor</button>
+        </div>
+      </div>
+
+      <p class="hint">Use o IP público/hostname para conexão remota, ou IP/hostname na mesma rede. O convidado deve colar um endpoint como ws://IP:PORT/ws em "Entrar".</p>
+    </section>
+
+    <section id="join-section" class="card hidden">
+      <h2>
+        <span class="ico">🔌</span>
+        Entrar
+      </h2>
+      <div class="grid-2">
+        <div class="form-row">
+          <label for="join-url">Endpoint do anfitrião (ws://host:porta/ws)</label>
+          <input id="join-url" type="text" placeholder="ws://192.168.0.10:3000/ws" />
+        </div>
+        <div class="form-row">
+          <label for="join-name">Seu nome</label>
+          <input id="join-name" type="text" placeholder="ex.: Bob" />
+        </div>
+      </div>
+      <div class="actions">
+        <button id="btn-connect" class="cta">
+          <span class="ico">🔗</span>
+          Entrar
+        </button>
+        <button id="btn-back-join" class="text-btn">Voltar</button>
+      </div>
+    </section>
+
+    <section id="chat-screen" class="card hidden focused-chat">
+      <div class="topbar">
+        <button id="btn-disconnect-top" class="cta danger small">Desconectar</button>
+      </div>
+      <ul id="messages" class="messages"></ul>
+      <div class="composer">
+        <input id="message-input" type="text" placeholder="Escreva sua mensagem..." />
+        <button id="btn-send" class="cta">
+          <span class="ico">📨</span>
+          Enviar
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <div id="toasts" class="toasts" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="./renderer.js"></script>
+</body>
+</html> 
