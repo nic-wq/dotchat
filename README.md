@@ -24,7 +24,7 @@ O dotchat é uma aplicação desktop leve que permite mensagens seguras em tempo
 ### Instalação
 ```bash
 # Clone o repositório
-git clone <url-do-repositorio>
+git clone https://github.com/nic-wq/dotchat
 cd dotchat
 
 # Instale as dependências
