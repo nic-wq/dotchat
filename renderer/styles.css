@@ -113,8 +113,107 @@ body {
 .messages li.system { color: var(--muted); font-style: italic; }
 .messages li .name { font-weight: 700; color: var(--cta); margin-right: 6px; }
 
+/* Estilos para mensagens de mídia */
+.messages li .media-content {
+  margin-top: 8px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.messages li .media-content img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+}
+.messages li .media-content audio {
+  width: 100%;
+  max-width: 300px;
+}
+.messages li .file-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(15,19,32,0.6);
+  border-radius: 6px;
+  margin-top: 4px;
+}
+.messages li .file-info .file-icon {
+  font-size: 20px;
+}
+.messages li .file-info .file-details {
+  flex: 1;
+}
+.messages li .file-info .file-name {
+  font-weight: 600;
+  color: var(--cta);
+}
+.messages li .file-info .file-size {
+  font-size: 12px;
+  color: var(--muted);
+}
+
 .composer { display: flex; gap: 8px; margin-top: 8px; }
 .composer input { flex: 1; padding: 12px 12px; border-radius: 10px; border: 1px solid #2a3042; background: var(--panel); color: var(--text); }
+
+/* Estilos para botões de anexo */
+.composer-actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.btn-attach {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--muted);
+}
+.btn-attach:hover {
+  background: rgba(121,224,142,0.1);
+  border-color: var(--cta);
+  color: var(--cta);
+}
+.btn-attach.recording {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #000;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Área de gravação de áudio */
+.audio-recorder {
+  background: rgba(255,107,107,0.1);
+  border: 1px solid var(--danger);
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 8px;
+}
+.recorder-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.recorder-status-text {
+  color: var(--danger);
+  font-weight: 600;
+}
+.recorder-time {
+  font-family: monospace;
+  font-size: 14px;
+  color: var(--danger);
+}
+.recorder-actions {
+  display: flex;
+  gap: 8px;
+}
 
 /* additions for focused chat */
 .focused-chat { padding: 0; }
@@ -140,4 +239,6 @@ body {
   .grid-2 { grid-template-columns: 1fr; }
   .form-row { flex-direction: column; align-items: stretch; }
   .form-row label { min-width: auto; }
+  .composer-actions { gap: 2px; }
+  .btn-attach { padding: 6px; }
 } 

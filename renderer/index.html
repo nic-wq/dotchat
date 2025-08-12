@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' http: https: ws: wss:;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' http: https: ws: wss:; media-src 'self' data:;" />
   <title>dotchat</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
@@ -113,11 +113,36 @@
       </div>
       <ul id="messages" class="messages"></ul>
       <div class="composer">
+        <div class="composer-actions">
+          <button id="btn-attach-file" class="btn-attach" title="Anexar arquivo">
+            <span class="ico">📎</span>
+          </button>
+          <button id="btn-attach-image" class="btn-attach" title="Anexar imagem">
+            <span class="ico">🖼️</span>
+          </button>
+          <button id="btn-record-audio" class="btn-attach" title="Gravar áudio">
+            <span class="ico">🎤</span>
+          </button>
+        </div>
         <input id="message-input" type="text" placeholder="Escreva sua mensagem..." />
         <button id="btn-send" class="cta">
           <span class="ico">📨</span>
           Enviar
         </button>
+      </div>
+      <!-- Inputs ocultos para upload -->
+      <input id="file-input" type="file" accept="*/*" style="display: none;" />
+      <input id="image-input" type="file" accept="image/*" style="display: none;" />
+      <!-- Área de gravação de áudio -->
+      <div id="audio-recorder" class="audio-recorder hidden">
+        <div class="recorder-status">
+          <span id="recorder-status-text">Gravando...</span>
+          <span id="recorder-time">00:00</span>
+        </div>
+        <div class="recorder-actions">
+          <button id="btn-stop-recording" class="cta danger small">Parar</button>
+          <button id="btn-cancel-recording" class="cta secondary small">Cancelar</button>
+        </div>
       </div>
     </section>
   </main>
